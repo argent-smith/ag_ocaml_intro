@@ -1,0 +1,216 @@
+\documentclass[12pt,aspectratio=169,ignorenonframetext,hyperref={pdftex,unicode},xcolor=dvipsnames]{beamer}
+\usepackage[english,russian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{textcomp}
+\usepackage{cmap}
+\usepackage{mathptmx}
+\usepackage[T2A]{fontenc}
+\usepackage{multicol}
+\usepackage{pgfpages}
+\usepackage{amsmath}
+\usepackage{ulem}
+%\usepackage{hhline}
+%\usepackage{alltt}
+%\usepackage{syntax}
+\usepackage{nicefrac}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{fancyvrb}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc,chains,scopes,trees}
+\usetikzlibrary{arrows.meta,matrix,tikzmark}
+%\usepackage{mathpartir}
+%\usepackage{colonequals}
+%\usepackage{tabularx}
+%\usepackage{ifmtarg}
+\usepackage{paratype}
+\usepackage[cache=false]{minted}
+\usepackage{fvextra}
+\usepackage{upquote}
+\usepackage{mdwlist}
+\usepackage{tcolorbox}
+\usepackage[thicklines]{cancel}
+\usepackage{tabularx}
+\usepackage{bussproofs}
+
+\renewcommand{\CancelColor}{\color{red}}
+
+\newminted{ocaml}{linenos=true}
+\newmintinline[caml]{ocaml}{}
+\newminted{text}{}
+\newmintinline[txt]{text}{}
+\newminted{scheme}{}
+\newmintinline[scheme]{scheme}{}
+% \newminted{sql}{}
+% \newminted{java}{}
+% \newmintinline[jj]{java}{}
+
+\definecolor{gray}{gray}{0.5}
+\definecolor{green}{rgb}{0,0.5,0}
+
+
+\newcommand{\slidegraphics}[2]{
+\begin{center}
+ \includegraphics[#1,keepaspectratio]{./images/#2}
+\end{center}}
+
+\usetheme{metropolis}           % Use metropolis theme
+\metroset{numbering=counter}
+\metroset{subsectionpage=progressbar}
+\metroset{block=fill}
+
+% \usetheme{Warsaw}
+% \useoutertheme{infolines}
+% \usecolortheme{crane}
+
+% \setbeamertemplate{footline}
+% {%
+% \leavevmode%
+% \hbox{%
+
+% \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.125ex,right]{author
+% in head/foot}%
+% \usebeamerfont{title in head/foot}\insertshortauthor\
+% (\insertshortinstitute)\hspace{.3cm}
+% \end{beamercolorbox}%
+
+% \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,center]{title
+% in head/foot}%
+% \usebeamerfont{author in head/foot}\hspace{.3cm}\insertshorttitle
+% \end{beamercolorbox}%
+
+% \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.5ex,dp=1.125ex,center]{author
+% in head/foot}
+% \usebeamerfont{author in
+% head/foot}\hspace{.3cm}\insertframenumber/\inserttotalframenumber\hspace{.3cm}
+% \end{beamercolorbox}%
+% }%
+% \vskip0pt%
+% }
+% \setbeamertemplate{navigation symbols}{}
+
+% \AtBeginSection[]
+% {
+% \begin{frame}<*>
+% \frametitle{Содержание}
+% \tableofcontents[currentsection,subsectionstyle=show/show/hide]
+% \end{frame}
+% }
+
+% \AtBeginSubsection[]
+% {
+% \begin{frame}<*>
+% \frametitle{Содержание}
+% \tableofcontents[currentsection,subsectionstyle=show/shaded/hide]
+% \end{frame}
+% }
+
+\institute{}
+
+
+\author{Павел Аргентов}
+
+\newcommand{\graybg}[1]{\colorbox{gray}{\mbox{#1}}}
+\renewcommand{\L}{\ensuremath{\lambda}}
+\newcommand{\LL}{\ensuremath{\Lambda}}
+
+% %%%
+% %%% НОВАЯ ВЕРСТКА ТАБЛИЦ
+% %%%
+% %%% сначала идёт параграф с заголовком...
+% \newcommand{\displayNew}[3]{#1
+
+% %%% ... потом верхняя рамка
+% %\rule[-1ex]{.4pt}{1ex}\rule{\tapltablewidth}{.4pt}\rule[-1ex]{.4pt}{1ex}\smallskip
+
+% %%% ... потом две minipage, стоящие рядом через черточку
+% \begin{minipage}[t]{.5\tapltablewidth}
+% #2
+% \end{minipage}
+% \vline
+% \begin{minipage}[t]{.5\tapltablewidth}
+% #3
+% \end{minipage}
+
+% %%% ... потом нижняя рамка
+% %\rule{.4pt}{1ex}\rule{\tapltablewidth}{.4pt}\rule{.4pt}{1ex}\par
+% }
+
+% \makeatletter
+% \newcommand{\tablesection}[2]{\textit{#1}\@ifmtarg{#2}{\relax}{\hfill\fbox{#2}}}
+% \makeatother
+
+% % \newlength{\tapltablewidth}
+% % \setlength{\tapltablewidth}{\paperwidth}
+% % \addtolength\tapltablewidth{-10mm}
+
+% \newcommand{\code}[1]{\texttt{#1}}
+% \newcommand{\ruleid}[1]{\mbox{\textsc{#1}}}
+% \newcommand{\ruletag}[1]{\tag{\textsc{#1}}\index{правило!\textsc{#1}}}
+% \newcommand{\function}[1]{\mbox{\textit{#1}\,}}
+
+\newcommand{\bt}{$^\backprime$}
+
+
+\def\PYGdefaultZsq{\textquotesingle}
+
+\makeatletter
+\let\@sverbatim\@verbatim
+\def\@verbatim{\@sverbatim \verbatimwithtick}
+{\catcode``=13 \gdef\verbatimwithtick{\chardef`=18 }}
+\makeatother
+
+
+\newcommand{\cfbox}[2]{%
+    \colorlet{currentcolor}{.}%
+    {\color{#1}%
+    \fbox{\color{currentcolor}#2}}%
+}
+
+\newcommand{\cffrac}[3]{%
+  \cfbox{#1}{$\frac{#2}{#3}$}%
+}
+
+\newcommand{\wffrac}[2]{\cffrac{white}{#1}{#2}}
+\newcommand{\rffrac}[2]{\cffrac{red}{#1}{#2}}
+
+\newenvironment{mycbox}{\begin{tcolorbox}[boxrule=0.2mm,colback=gray!30]\begin{flushleft}}{\end{flushleft}\end{tcolorbox}}
+
+
+\newcommand{\central}[1]{\begin{center}\Huge\color{green} \textbf{#1}\end{center}}
+
+
+
+\newcommand{\screenshot}[1]{
+\begin{center}
+\includegraphics[width=12cm,keepaspectratio]{./images/#1}
+\end{center}
+}
+
+\newcommand{\screenshotw}[2]{
+\begin{center}
+\includegraphics[width=#1,keepaspectratio]{./images/#2}
+\end{center}
+}
+
+\newenvironment{idris}
+  {\large\Verbatim[commandchars=\\\{\}]}
+  {\endVerbatim}
+
+\newenvironment{idrisNormal}
+  {\Verbatim[commandchars=\\\{\}]}
+  {\endVerbatim}
+
+
+\newcommand{\IdrisData}[1]{\textcolor{red}{#1}}
+\newcommand{\IdrisType}[1]{\textcolor{blue}{#1}}
+\newcommand{\IdrisBound}[1]{\textcolor{magenta}{#1}}
+\newcommand{\IdrisFunction}[1]{\textcolor{green}{#1}}
+\newcommand{\IdrisKeyword}[1]{{\underline{#1}}}
+\newcommand{\IdrisImplicit}[1]{{\itshape \IdrisBound{#1}}}
+
+\newcommand{\ruleCat}[1]{\ensuremath{\mathrm{-#1}}}
+
+\newcommand{\CC}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.10em}\raisebox{.4ex}{\tiny\bf +}}
+\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+
+\newcommand{\lang}[1]{\begin{flushright}\textit{\color{gray}#1}\end{flushright}}

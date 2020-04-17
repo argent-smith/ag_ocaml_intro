@@ -1,0 +1,15 @@
+.tmp
+node_modules
+dist
+pdf
+.DS_Store
+*.pdf
+*.aux
+*_latexmk
+*.fls
+*.log
+*.out
+*.nav
+*.snm
+*.toc
+*.vrb
